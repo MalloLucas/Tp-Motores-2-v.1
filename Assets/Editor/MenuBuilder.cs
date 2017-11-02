@@ -25,6 +25,7 @@ public class MenuBuilder : EditorWindow
         PrefabSprite = (Sprite)EditorGUILayout.ObjectField("Prefab Button Image", PrefabSprite, typeof(Sprite), true);
         ActualCanvas = FindObjectOfType<Canvas>();
 
+
         if (GUILayout.Button("Build Button"))
         {
 
