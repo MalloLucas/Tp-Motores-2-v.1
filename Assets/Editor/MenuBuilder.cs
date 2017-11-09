@@ -87,7 +87,7 @@ public class MenuBuilder : EditorWindow
             if (_scripts == Scripts.ChangeScene) {
 
                 NewTextButton.GetComponent<Text>().text = "Change Scene To: ";
-                NewButton.transform.parent = canvasToStart.transform;
+                NewButton.transform.SetParent(canvasToStart.transform);
                 NewButton.AddComponent<ChangeScene>();
 
             }
@@ -111,7 +111,7 @@ public class MenuBuilder : EditorWindow
             NewTextButton.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
             NewTextButton.GetComponent<Text>().alignment = TextAnchor.MiddleCenter;
 
-            NewTextButton.transform.parent = NewButton.transform;    
+            NewButton.transform.parent = canvasToStart.transform;
             NewButton.transform.position = ActualCanvas.transform.position;
             NewButton.GetComponent<Image>().sprite = PrefabSprite;
 
