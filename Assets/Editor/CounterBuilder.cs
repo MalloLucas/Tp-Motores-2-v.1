@@ -8,8 +8,10 @@ public class CounterBuilder : EditorWindow {
 
 
     float timeToRestart = 0;
-    int fontSize = 0; 
-    
+    int fontSize = 0;
+    string scene;
+
+
     Font fontStyle;
     GameObject displayedText;
     Color fontColor;
@@ -24,14 +26,13 @@ public class CounterBuilder : EditorWindow {
 	
 	void OnGUI () {
 
-        GUI.skin.font = fontStyle;
+        var newFont = EditorStyles.largeLabel;
+        newFont.font = fontStyle;
 
         Canvas canvas = FindObjectOfType<Canvas>();
 
         minSize = new Vector2(800, 400);
         maxSize = new Vector2(800, 400);
-
-
 
         EditorGUILayout.BeginVertical();
 
@@ -58,11 +59,15 @@ public class CounterBuilder : EditorWindow {
 
         GUILayout.Space(15);
 
-        EditorGUILayout.LabelField("This is a Test Counter: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9", EditorStyles.largeLabel);
+        GUILayout.Label("This is a Test Counter: 0, 1, 2, 3, 4, 5, 6, 7, 8, 9", newFont);
         GUI.skin.font = default(Font);
 
-        GUILayout.Space(15);
+        GUILayout.Space(50);
 
+
+        scene = EditorGUILayout.TextField("Scene to restart", scene);
+
+        GUILayout.Space(15);
 
         if (GUILayout.Button("Add Counter to Scene"))
         {
@@ -75,8 +80,13 @@ public class CounterBuilder : EditorWindow {
             displayedText.GetComponent<Text>().fontSize = fontSize;
             displayedText.GetComponent<Text>().color = fontColor;
 
+            displayedText.AddComponent<Counter>();
+            displayedText.GetComponent<Counter>().sceneToChange = scene;
 
-            displayedText.transform.position = FindObjectOfType<Canvas>().GetComponent<Transform>().position;
+            Vector3 textPosition = new Vector3 (FindObjectOfType<Canvas>().GetComponent<Transform>().position.x, 400, 
+                FindObjectOfType<Canvas>().GetComponent<Transform>().position.z);
+
+            displayedText.transform.position = textPosition; 
 
             displayedText.transform.parent = FindObjectOfType<Canvas>().GetComponent<Transform>();
 

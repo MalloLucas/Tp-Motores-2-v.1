@@ -68,7 +68,7 @@ public class MenuBuilder : EditorWindow
 
         if (canvasToStart == null)
         {
-            EditorGUILayout.HelpBox("To create a Button you must habe a Canvas Parent", MessageType.Error);
+            EditorGUILayout.HelpBox("To create a Button you must have a Canvas Parent", MessageType.Error);
             GUI.enabled = false;
         }
 
