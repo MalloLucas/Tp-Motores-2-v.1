@@ -42,10 +42,7 @@ public class DrawMode : EditorWindow
 
         drawModeIsActive = EditorGUILayout.Toggle("Draw Mode", drawModeIsActive);
 
-        if (drawModeIsActive && _button)
-        {
-            Debug.Log("funca");
-        }
+        
 
 
         if(myNodes == null)
@@ -62,6 +59,10 @@ public class DrawMode : EditorWindow
         {
             myNodes[i].window = GUI.Window(i, myNodes[i].window, InstNodeWindow, myNodes[i].name + i);
             nodePos = myNodes[i].window.position;
+
+            //fhsarefhrtfgjfharjsdrthryj
+            myNodes[i].window.width = 100;
+            //dasgsrtjhsfaefhdfjhnfdghasdfgdrfg
 
             for (int j = myNodes[i].connections.Count - 1; j >= 0; j--)
             {
@@ -82,6 +83,7 @@ public class DrawMode : EditorWindow
     private void Initialization()
     {
         myNodes = new List<Nodes>();
+        
     }
 
     private void CreateNodeWindow(string name)
