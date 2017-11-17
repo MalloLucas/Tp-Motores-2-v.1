@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Counter : MonoBehaviour {
@@ -29,7 +30,7 @@ public class Counter : MonoBehaviour {
 
         if (counter == 0)
         {
-            textCounter.text = sceneToChange;
+            SceneManager.LoadScene(sceneToChange);
         }
 
         secondsCounter++;
