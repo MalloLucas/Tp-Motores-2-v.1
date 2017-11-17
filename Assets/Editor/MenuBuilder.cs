@@ -133,7 +133,7 @@ public class MenuBuilder : EditorWindow
 				}
                 NewButton.transform.SetParent(canvasToStart.transform);
                 NewButton.AddComponent<ChangeScene>();
-                NewButton.AddComponent<ChangeScene>().scene = scene.name;
+                NewButton.AddComponent<ChangeScene>().scena = scene.name;
 
             }
             if (_scripts == Scripts.Pausa)
