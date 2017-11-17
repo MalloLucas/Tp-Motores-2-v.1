@@ -127,10 +127,7 @@ public class CounterBuilder : EditorWindow {
                 displayedText.AddComponent<Counter>();
                 displayedText.GetComponent<Counter>().sceneToChange = sceneToChange.name;
 
-                Vector3 textPosition = new Vector3 (FindObjectOfType<Canvas>().GetComponent<Transform>().position.x, 400, 
-                    FindObjectOfType<Canvas>().GetComponent<Transform>().position.z);
-
-                displayedText.transform.position = textPosition; 
+                displayedText.GetComponent<RectTransform>().position = FindObjectOfType<Canvas>().GetComponent<Transform>().position;
 
                 displayedText.transform.parent = FindObjectOfType<Canvas>().GetComponent<Transform>();
             }
