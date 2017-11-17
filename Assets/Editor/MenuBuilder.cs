@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class MenuBuilder : EditorWindow
 {
     GameObject NewButton;
+//asdasdasd
     GameObject NewTextButton;
     Canvas ActualCanvas;
     public GameObject newCanvas;
