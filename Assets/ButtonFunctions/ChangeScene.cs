@@ -8,7 +8,7 @@ public class ChangeScene : MonoBehaviour {
 
     // Use this for initialization
     public Button yourButton;
-    public int scena;
+    public string scena;
 
     void Start()
     {
