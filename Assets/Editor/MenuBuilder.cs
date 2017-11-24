@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class MenuBuilder : EditorWindow
 {
     GameObject NewButton;
-//asdasdasd
     GameObject NewTextButton;
     Canvas ActualCanvas;
     public GameObject newCanvas;
@@ -51,17 +50,13 @@ public class MenuBuilder : EditorWindow
 
     void OnGUI()
     {
-
-
-
-        GUILayout.BeginArea(new Rect(0, 0, 800, 600));
+ 
         GUILayout.BeginVertical();
 
-        scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true, GUILayout.Width(800), GUILayout.MinHeight(600), GUILayout.MaxHeight(500), GUILayout.ExpandHeight(true));
+        scrollPosition = GUILayout.BeginScrollView(scrollPosition, false, true);
 
-
+        minSize = new Vector2(200, 200);
         maxSize = new Vector2(800, 800);
-        minSize = new Vector2(200,200);
 
         GUIStyle TitleStyle = new GUIStyle();
         TitleStyle.fontSize = 20;
@@ -81,22 +76,17 @@ public class MenuBuilder : EditorWindow
 
         EditorGUILayout.LabelField("Menu Builder", TitleStyle2);
 
+        Rect rect = GUILayoutUtility.GetRect(50,50);
+
+        EditorGUILayout.LabelField("___________________________________________________________________________________________________________ ", EditorStyles.boldLabel);
+
+        EditorGUILayout.Separator();
+
         EditorGUILayout.LabelField("Create a New Button", TitleStyle);
 
         EditorGUILayout.LabelField("Actual Function in Button: " + actualFuntion, EditorStyles.boldLabel);
 
         _scripts = (Scripts)EditorGUILayout.EnumPopup("Function to Add :", _scripts);
-
-        if (_scripts == Scripts.ChangeScene)
-        {
-            EditorGUILayout.LabelField("Scene to Change: ", EditorStyles.boldLabel);
-            scene = (SceneAsset)EditorGUILayout.ObjectField("", scene, typeof(SceneAsset), true );
-        }
-
-
-        if (_scripts == Scripts.ActivateCanvas) EditorGUILayout.LabelField("Canvas to Activate: ", EditorStyles.boldLabel);
-
-        if (_scripts == Scripts.ActivateCanvas) canvasToAdd = (Canvas)EditorGUILayout.ObjectField("", canvasToAdd, typeof(Canvas), true);
 
         EditorGUILayout.LabelField("Button's Sprite", EditorStyles.boldLabel);
         GUILayout.BeginVertical();
@@ -111,7 +101,17 @@ public class MenuBuilder : EditorWindow
         
         canvasToStart = (Canvas)EditorGUILayout.ObjectField("", canvasToStart, typeof(Canvas), true);
 
-		EditorGUILayout.LabelField("Button's name" , EditorStyles.boldLabel);
+        if (_scripts == Scripts.ChangeScene)
+        {
+            EditorGUILayout.LabelField("Scene to Change: ", EditorStyles.boldLabel);
+            scene = (SceneAsset)EditorGUILayout.ObjectField("", scene, typeof(SceneAsset), true);
+        }
+
+        if (_scripts == Scripts.ActivateCanvas) EditorGUILayout.LabelField("Canvas to Activate: ", EditorStyles.boldLabel);
+
+        if (_scripts == Scripts.ActivateCanvas) canvasToAdd = (Canvas)EditorGUILayout.ObjectField("", canvasToAdd, typeof(Canvas), true);
+
+        EditorGUILayout.LabelField("Button's name" , EditorStyles.boldLabel);
 
 		namebutton = (string)EditorGUILayout.TextField ("", namebutton);
 
@@ -123,13 +123,13 @@ public class MenuBuilder : EditorWindow
         
         if (textSize <= 0) textSize = 10;
 
-            if (canvasToStart == null)
+        if (canvasToStart == null || scene == null)
         {
-            EditorGUILayout.HelpBox("To create a Button you must have a Canvas Parent", MessageType.Error);
+            EditorGUILayout.HelpBox("To create a Button you must have a Canvas Parent and a scene to load", MessageType.Error);
             GUI.enabled = false;
         }
 
-            if (GUILayout.Button("Build Button"))
+        if (GUILayout.Button("Build Button"))
         {
 
             NewButton = new GameObject("Button");
@@ -161,7 +161,6 @@ public class MenuBuilder : EditorWindow
 					NewTextButton.GetComponent<Text>().text = namebutton;
 				}
                 NewButton.transform.SetParent(canvasToStart.transform);
-                NewButton.AddComponent<ChangeScene>();
                 NewButton.AddComponent<ChangeScene>().scena = scene.name;
 
             }
@@ -204,7 +203,11 @@ public class MenuBuilder : EditorWindow
 
         GUI.enabled = true;
 
-		EditorGUILayout.LabelField("Create a Prefab Menu" , TitleStyle);
+        Rect rect2 = GUILayoutUtility.GetRect(30, 30);
+
+        EditorGUILayout.LabelField("___________________________________________________________________________________________________________ ", EditorStyles.boldLabel);
+
+        EditorGUILayout.LabelField("Create a Prefab Menu" , TitleStyle);
 
         previewCanvas = (GameObject)EditorGUILayout.ObjectField("", previewCanvas, typeof(GameObject), true);
 
@@ -223,6 +226,10 @@ public class MenuBuilder : EditorWindow
 
         GUI.enabled = true;
 
+        Rect rect3 = GUILayoutUtility.GetRect(30, 30);
+
+        EditorGUILayout.LabelField("___________________________________________________________________________________________________________ ", EditorStyles.boldLabel);
+
         EditorGUILayout.LabelField("Create a New Canvas", TitleStyle);
 
         if (GUILayout.Button("Create New Canvas"))
@@ -232,6 +239,11 @@ public class MenuBuilder : EditorWindow
             newCanvas.AddComponent<GraphicRaycaster>();
             newCanvas.AddComponent<CanvasScaler>();
         }
+
+
+        Rect rect4 = GUILayoutUtility.GetRect(30, 30);
+
+        EditorGUILayout.LabelField("___________________________________________________________________________________________________________ ", EditorStyles.boldLabel);       
 
         EditorGUILayout.LabelField("Create a New Image", TitleStyle);
 
@@ -250,6 +262,7 @@ public class MenuBuilder : EditorWindow
             EditorGUILayout.HelpBox("There´s not a Canvas for Image", MessageType.Error);
             GUI.enabled = false;
         }
+ 
 
         if (GUILayout.Button("Create New Image"))
         {
@@ -264,6 +277,10 @@ public class MenuBuilder : EditorWindow
         }
 
         GUI.enabled = true;
+
+        Rect rect5 = GUILayoutUtility.GetRect(30, 30);
+
+        EditorGUILayout.LabelField("___________________________________________________________________________________________________________ ", EditorStyles.boldLabel);
 
         EditorGUILayout.LabelField("Create a New Text", TitleStyle);
 
@@ -314,7 +331,7 @@ public class MenuBuilder : EditorWindow
 
         GUILayout.EndScrollView();
         GUILayout.EndVertical();
-        GUILayout.EndArea();
+        
 
 
     }
