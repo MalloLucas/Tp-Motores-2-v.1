@@ -75,6 +75,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ButtonFunctions\ActivateCanvas.cs" />
+    <Compile Include="Assets\ButtonFunctions\ChangeScene.cs" />
+    <Compile Include="Assets\ButtonFunctions\Counter.cs" />
+    <Compile Include="Assets\ButtonFunctions\Pause.cs" />
     <Compile Include="Assets\Nodes.cs" />
     <Compile Include="Assets\Prueba.cs" />
   </ItemGroup>
